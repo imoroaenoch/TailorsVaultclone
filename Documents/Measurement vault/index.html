@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tailors Vault - Quick measurement recording for tailors">
+    <title>Tailors Vault</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Business Setup Screen -->
+    <div id="business-setup-screen" class="screen">
+        <div class="container">
+            <h1>Welcome to<br>Tailors Vault</h1>
+            <p class="setup-subtitle">Set up your business to get started</p>
+            
+            <form id="business-setup-form">
+                <div class="form-group">
+                    <label for="business-name">Business Name <span class="required">*</span></label>
+                    <input type="text" id="business-name" required autocomplete="off" placeholder="e.g., Elite Tailors">
+                </div>
+
+                <div class="form-group">
+                    <label for="business-email">Business Email <span class="required">*</span></label>
+                    <input type="email" id="business-email" required autocomplete="off" placeholder="e.g., info@elitetailors.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="business-phone">Business Phone <span class="required">*</span></label>
+                    <input type="tel" id="business-phone" required autocomplete="off" placeholder="e.g., +234 800 000 0000">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-save">Continue</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Home Screen -->
+    <div id="home-screen" class="screen">
+        <div class="container">
+            <div class="home-header">
+                <h1 id="business-header-name">Tailors Vault</h1>
+                <div class="header-actions">
+                    <button id="theme-toggle-btn" class="btn-theme-toggle" title="Toggle theme" aria-label="Toggle theme">🌙</button>
+                    <button id="settings-btn" class="btn-settings" title="Settings" aria-label="Settings">⚙</button>
+                </div>
+            </div>
+            <div class="action-buttons">
+                <button id="new-measurement-btn" class="btn btn-primary">
+                    New Measurement
+                </button>
+                <button id="search-measurements-btn" class="btn btn-secondary">
+                    Search Measurements
+                </button>
+                <button id="clients-btn" class="btn btn-secondary">
+                    Clients
+                </button>
+            </div>
+            
+            <div class="recent-section">
+                <h3>Recent Measurements</h3>
+                <div id="recent-measurements" class="recent-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Screen -->
+    <div id="settings-screen" class="screen">
+        <div class="container">
+            <div class="screen-header">
+                <button id="back-from-settings-btn" class="btn-back">← Back</button>
+                <h2>Settings</h2>
+            </div>
+
+            <div class="settings-content">
+                <div class="settings-section">
+                    <h3>Business Info</h3>
+                    <div id="business-info-display" class="business-info"></div>
+                    <button id="edit-business-btn" class="btn btn-secondary" style="margin-top: 16px;">
+                        Edit Business
+                    </button>
+                </div>
+
+                <div class="settings-section" style="margin-top: 40px;">
+                    <h3>Session</h3>
+                    <p class="settings-info">Log out without deleting your data.</p>
+                    <button id="logout-btn" class="btn btn-secondary">
+                        Logout
+                    </button>
+                </div>
+
+                <div class="settings-section" id="admin-section" style="margin-top: 40px; display: none;">
+                    <h3>Admin</h3>
+                    <p class="settings-info">Access admin dashboard for system management.</p>
+                    <button id="admin-btn" class="btn btn-secondary">
+                        Admin Dashboard
+                    </button>
+                </div>
+
+                <div class="settings-section" style="margin-top: 40px;">
+                    <h3>Danger Zone</h3>
+                    <p class="settings-warning">This will permanently delete all your data including clients and measurements.</p>
+                    <button id="reset-business-btn" class="btn btn-delete">
+                        Reset Business
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Business Screen -->
+    <div id="edit-business-screen" class="screen">
+        <div class="container">
+            <div class="screen-header">
+                <button id="back-from-edit-business-btn" class="btn-back">← Back</button>
+                <h2>Edit Business</h2>
+            </div>
+            
+            <form id="edit-business-form">
+                <div class="form-group">
+                    <label for="edit-business-name">Business Name <span class="required">*</span></label>
+                    <input type="text" id="edit-business-name" required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-business-email">Business Email <span class="required">*</span></label>
+                    <input type="email" id="edit-business-email" required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-business-phone">Business Phone <span class="required">*</span></label>
+                    <input type="tel" id="edit-business-phone" required autocomplete="off">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-save">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Business Login Screen -->
+    <div id="business-login-screen" class="screen">
+        <div class="container">
+            <h1>Welcome Back</h1>
+            <p class="setup-subtitle">Enter your business details to continue</p>
+            
+            <form id="business-login-form">
+                <div class="form-group">
+                    <label for="login-business-name">Business Name <span class="required">*</span></label>
+                    <input type="text" id="login-business-name" required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="login-business-email">Business Email <span class="required">*</span></label>
+                    <input type="email" id="login-business-email" required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="login-business-phone">Business Phone <span class="required">*</span></label>
+                    <input type="tel" id="login-business-phone" required autocomplete="off">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-save">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- New Measurement Screen -->
+    <div id="new-measurement-screen" class="screen">
+        <div class="container">
+            <div class="screen-header">
+                <button id="back-from-new-btn" class="btn-back">← Back</button>
+                <h2>New Measurement</h2>
+            </div>
+            
+            <form id="measurement-form">
+                <div class="form-group">
+                    <label for="client-name">Client Name <span class="required">*</span></label>
+                    <input type="text" id="client-name" required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone-number">Phone Number</label>
+                    <input type="tel" id="phone-number" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="client-sex">Sex <span class="required">*</span></label>
+                    <select id="client-sex" required>
+                        <option value="">Select sex</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="garment-type">Garment Type</label>
+                    <select id="garment-type">
+                        <option value="">Select garment type</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="custom-garment-group" style="display: none;">
+                    <label for="custom-garment-name">Custom Garment Name <span class="required">*</span></label>
+                    <input type="text" id="custom-garment-name" autocomplete="off" placeholder="e.g., Agbada, Jacket, etc.">
+                </div>
+
+                <div class="measurements-grid">
+                    <div class="form-group">
+                        <label for="shoulder">Shoulder</label>
+                        <input type="number" id="shoulder" step="0.1" min="0" placeholder="0.0" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="chest">Chest</label>
+                        <input type="number" id="chest" step="0.1" min="0" placeholder="0.0" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="waist">Waist</label>
+                        <input type="number" id="waist" step="0.1" min="0" placeholder="0.0" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sleeve">Sleeve</label>
+                        <input type="number" id="sleeve" step="0.1" min="0" placeholder="0.0" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="length">Length</label>
+                        <input type="number" id="length" step="0.1" min="0" placeholder="0.0" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="neck">Neck</label>
+                        <input type="number" id="neck" step="0.1" min="0" placeholder="0.0" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hip">Hip</label>
+                        <input type="number" id="hip" step="0.1" min="0" placeholder="0.0" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inseam">Inseam</label>
+                        <input type="number" id="inseam" step="0.1" min="0" placeholder="0.0" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="thigh">Thigh</label>
+                        <input type="number" id="thigh" step="0.1" min="0" placeholder="0.0" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="seat">Seat</label>
+                        <input type="number" id="seat" step="0.1" min="0" placeholder="0.0" autocomplete="off">
+                    </div>
+
+                    <!-- Custom fields will be inserted here inline -->
+                    <div id="custom-fields-container"></div>
+
+                    <!-- Add Custom Field Button (hidden by default, shown after garment type selection) -->
+                    <div class="form-group add-custom-field-wrapper" id="add-custom-field-wrapper" style="display: none;">
+                        <button type="button" id="add-custom-field-btn" class="btn-add-field-inline">+ Add Measurement Field</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Notes / Remarks</label>
+                    <textarea id="notes" rows="3" autocomplete="off"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-save">Save Measurement</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Search Screen -->
+    <div id="search-screen" class="screen">
+        <div class="container">
+            <div class="screen-header">
+                <button id="back-from-search-btn" class="btn-back">← Back</button>
+                <h2>Search Measurements</h2>
+            </div>
+
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search by name or phone number..." autocomplete="off">
+            </div>
+
+            <div id="search-results" class="search-results"></div>
+        </div>
+    </div>
+
+    <!-- Clients Screen -->
+    <div id="clients-screen" class="screen">
+        <div class="container">
+            <div class="screen-header">
+                <button id="back-from-clients-btn" class="btn-back">← Back</button>
+                <h2 id="clients-count"></h2>
+            </div>
+
+            <div id="clients-list" class="clients-list"></div>
+        </div>
+    </div>
+
+    <!-- Client Details Screen -->
+    <div id="client-details-screen" class="screen">
+        <div class="container">
+            <div class="screen-header client-details-header">
+                <button id="back-from-details-btn" class="btn-back">← Back</button>
+                <h2 id="client-details-name"></h2>
+                <div class="client-menu-wrapper">
+                    <button id="client-menu-btn" class="btn-menu" aria-label="Client actions">⋮</button>
+                    <div id="client-menu-dropdown" class="menu-dropdown">
+                        <button id="edit-client-btn" class="menu-item">Edit Client</button>
+                        <button id="delete-client-btn" class="menu-item menu-item-danger">Delete Client</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="client-details-content" class="client-details"></div>
+            
+            <button id="add-measurement-from-details-btn" class="btn btn-primary" style="margin-top: 16px;">
+                Add Measurement
+            </button>
+        </div>
+    </div>
+
+    <!-- Edit Client Screen -->
+    <div id="edit-client-screen" class="screen">
+        <div class="container">
+            <div class="screen-header">
+                <button id="back-from-edit-client-btn" class="btn-back">← Back</button>
+                <h2>Edit Client</h2>
+            </div>
+            
+            <form id="edit-client-form">
+                <div class="form-group">
+                    <label for="edit-client-name">Client Name <span class="required">*</span></label>
+                    <input type="text" id="edit-client-name" required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-client-phone">Phone Number</label>
+                    <input type="tel" id="edit-client-phone" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-client-sex">Sex <span class="required">*</span></label>
+                    <select id="edit-client-sex" required>
+                        <option value="">Select sex</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-save">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Measurement Detail View Screen -->
+    <div id="measurement-detail-screen" class="screen">
+        <div class="container">
+            <div class="screen-header">
+                <button id="back-from-measurement-detail-btn" class="btn-back">← Back</button>
+                <h2>Measurement Details</h2>
+            </div>
+
+            <button id="view-client-from-measurement-btn" class="btn btn-secondary" style="margin-bottom: 24px;">
+                View Client
+            </button>
+
+            <div id="measurement-detail-content" class="client-details"></div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Screen -->
+    <div id="admin-screen" class="screen">
+        <div class="container">
+            <div class="screen-header">
+                <button id="back-from-admin-btn" class="btn-back">← Back</button>
+                <h2>Admin Dashboard</h2>
+            </div>
+
+            <div class="admin-tabs">
+                <button id="admin-users-tab" class="admin-tab active">Users</button>
+                <button id="admin-businesses-tab" class="admin-tab">Businesses</button>
+                <button id="admin-clients-tab" class="admin-tab">Clients</button>
+                <button id="admin-measurements-tab" class="admin-tab">Measurements</button>
+            </div>
+
+            <!-- Users Tab Content -->
+            <div id="admin-users-content" class="admin-content active">
+                <div class="admin-section-header">
+                    <h3>User Management</h3>
+                    <div id="admin-users-stats" class="admin-stats"></div>
+                </div>
+                <div id="admin-users-list" class="admin-list"></div>
+            </div>
+
+            <!-- Businesses Tab Content -->
+            <div id="admin-businesses-content" class="admin-content">
+                <div class="admin-section-header">
+                    <h3>Business Management</h3>
+                    <div id="admin-businesses-stats" class="admin-stats"></div>
+                </div>
+                <div id="admin-businesses-list" class="admin-list"></div>
+            </div>
+
+            <!-- Clients Tab Content -->
+            <div id="admin-clients-content" class="admin-content">
+                <div class="admin-section-header">
+                    <h3>All Clients</h3>
+                    <div id="admin-clients-stats" class="admin-stats"></div>
+                </div>
+                <div id="admin-clients-list" class="admin-list"></div>
+            </div>
+
+            <!-- Measurements Tab Content -->
+            <div id="admin-measurements-content" class="admin-content">
+                <div class="admin-section-header">
+                    <h3>All Measurements</h3>
+                    <div id="admin-measurements-stats" class="admin-stats"></div>
+                </div>
+                <div id="admin-measurements-list" class="admin-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin User Details Modal -->
+    <div id="admin-user-details-modal" class="admin-modal" style="display: none;">
+        <div class="admin-modal-content">
+            <div class="admin-modal-header">
+                <h3 id="admin-user-details-title">User Details</h3>
+                <button id="admin-user-details-close" class="admin-modal-close">×</button>
+            </div>
+            <div id="admin-user-details-body" class="admin-modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Admin Business Details Modal -->
+    <div id="admin-business-details-modal" class="admin-modal" style="display: none;">
+        <div class="admin-modal-content">
+            <div class="admin-modal-header">
+                <h3 id="admin-business-details-title">Business Details</h3>
+                <button id="admin-business-details-close" class="admin-modal-close">×</button>
+            </div>
+            <div id="admin-business-details-body" class="admin-modal-body"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

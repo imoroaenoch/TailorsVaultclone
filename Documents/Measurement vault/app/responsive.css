@@ -1,0 +1,217 @@
+/* Mid-Range / Small Tablet (520px - 767px) */
+@media (min-width: 520px) and (max-width: 767px) {
+
+    /* 
+       Unified Page Layout Strategy (Mid-Range)
+       Targeting .app-content-wrapper to override styles.css ID selectors
+    */
+    .app-content-wrapper,
+    .inner-content-container,
+    #home-screen .app-content-wrapper,
+    #clients-screen .app-content-wrapper,
+    #search-screen .app-content-wrapper,
+    #new-measurement-screen .app-content-wrapper,
+    #settings-screen .app-content-wrapper {
+        margin: 0 auto;
+        padding: 24px 20px;
+        /* Vertical 24px, Horizontal 20px */
+        max-width: 500px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Inner container should not have padding, just centering */
+    .inner-content-container {
+        padding: 0 !important;
+        margin: 0 auto !important;
+    }
+
+    /* Reset Reset: Ensure full width rules from styles.css are nullified */
+    #clients-screen .app-content-wrapper,
+    #search-screen .app-content-wrapper {
+        padding: 24px 20px !important;
+        /* Force padding back */
+        margin: 0 auto !important;
+    }
+
+    /* Dashboard Grid in Mid-Range */
+    .dashboard-action-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    /* Navigation Bar Centering */
+    .top-navbar {
+        display: flex;
+        justify-content: center;
+        padding: 0 20px;
+    }
+
+    .navbar-content {
+        width: 100%;
+        max-width: 460px;
+        /* 500px - 40px padding */
+        padding: 10px 0;
+        margin: 0;
+    }
+
+    /* Auth Screens - keep consistent */
+    .auth-card-content {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+
+/* Tablet Styles (min-width: 768px) */
+@media (min-width: 768px) {
+
+    /* 
+       Unified Page Layout Strategy 
+       Ref: Settings Page Spacing 
+    */
+
+    /* Master Container - Controls central column width */
+    .container,
+    .app-content-wrapper,
+    .inner-content-container {
+        margin: 0 auto;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        max-width: 680px;
+        /* Tablet Width Standard */
+        width: 100%;
+        padding-left: 24px;
+        padding-right: 24px;
+        box-sizing: border-box;
+    }
+
+    .inner-content-container {
+        padding: 0 !important;
+        margin: 0 auto !important;
+    }
+
+    /* Force specific screens to obey master width & padding overrides */
+    #home-screen .app-content-wrapper,
+    #new-measurement-screen .app-content-wrapper,
+    #edit-business-screen .container,
+    #edit-client-screen .container,
+    #client-details-screen .container,
+    #measurement-detail-screen .container,
+    #clients-screen .app-content-wrapper,
+    #search-screen .app-content-wrapper,
+    #settings-screen .app-content-wrapper {
+        max-width: 680px;
+        margin: 0 auto !important;
+        /* Override potential 0 margins */
+        padding: 40px 24px !important;
+        /* Force standard spacing */
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Dashboard Internal Alignment */
+    #home-screen .app-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dashboard-welcome,
+    .dashboard-action-grid,
+    .recent-section {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .dashboard-action-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    /* Ensure cards have min-height */
+    .dashboard-action-card {
+        min-height: 140px;
+    }
+
+    .dashboard-action-card-primary {
+        grid-row: span 2;
+        height: 100%;
+    }
+
+    .dashboard-action-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Top Navbar - Centered */
+    .top-navbar {
+        display: flex;
+        justify-content: center;
+        padding: 0 24px;
+    }
+
+    .navbar-content {
+        width: 100%;
+        max-width: 632px;
+        /* 680px - 48px padding */
+        margin: 0;
+        padding: 10px 0;
+    }
+
+    /* Auth Screens */
+    .auth-card-content {
+        max-width: 450px;
+        margin: 0 auto;
+        padding: 40px;
+    }
+}
+
+/* Desktop Styles (min-width: 1024px) */
+@media (min-width: 1024px) {
+
+    /* Widen the standard container */
+    .container,
+    .app-content-wrapper,
+    .inner-content-container {
+        max-width: 900px;
+    }
+
+    /* Override for pages using the wrapper */
+    #home-screen .app-content-wrapper,
+    #clients-screen .app-content-wrapper,
+    #search-screen .app-content-wrapper,
+    #new-measurement-screen .app-content-wrapper,
+    #settings-screen .app-content-wrapper {
+        max-width: 900px;
+    }
+
+    /* Dashboard Grid Adjustment */
+    .dashboard-action-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+    }
+
+    /* Navbar Alignment */
+    .navbar-content {
+        max-width: 852px;
+        /* 900px - 48px padding */
+    }
+
+    .dashboard-action-card-primary {
+        grid-column: span 2;
+    }
+
+    .dashboard-action-stack {
+        grid-column: span 2;
+        flex-direction: row;
+        /* Side by side on desktop? */
+        gap: 24px;
+    }
+
+    .dashboard-action-card-secondary {
+        flex: 1;
+    }
+}

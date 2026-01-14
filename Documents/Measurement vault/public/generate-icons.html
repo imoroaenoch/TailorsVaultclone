@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generate PWA Icons</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #0a0f1f;
+      color: white;
+    }
+    canvas {
+      border: 1px solid #333;
+      margin: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #FFD700;
+      color: #0a0f1f;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      margin: 10px 5px;
+    }
+    button:hover {
+      background: #ffed4e;
+    }
+  </style>
+</head>
+<body>
+  <h1>Generate PWA Icons for Tailor's Vault</h1>
+  <p>Click the buttons below to generate and download the required icon sizes.</p>
+  
+  <div>
+    <canvas id="icon192" width="192" height="192"></canvas>
+    <canvas id="icon512" width="512" height="512"></canvas>
+  </div>
+  
+  <div>
+    <button onclick="generateIcon(192)">Generate & Download 192x192</button>
+    <button onclick="generateIcon(512)">Generate & Download 512x512</button>
+  </div>
+
+  <script>
+    function generateIcon(size) {
+      const canvas = document.getElementById(`icon${size}`);
+      const ctx = canvas.getContext('2d');
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, size, size);
+      
+      // Background gradient (dark blue to darker)
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#0a0f1f');
+      gradient.addColorStop(1, '#1a2338');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, size, size);
+      
+      // Draw lightning bolt icon (matching app logo)
+      ctx.fillStyle = '#FFD700';
+      ctx.strokeStyle = '#FFD700';
+      ctx.lineWidth = size / 12;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      
+      const centerX = size / 2;
+      const centerY = size / 2;
+      const iconSize = size * 0.6;
+      
+      ctx.beginPath();
+      // Lightning bolt shape
+      ctx.moveTo(centerX - iconSize * 0.15, centerY - iconSize * 0.4);
+      ctx.lineTo(centerX + iconSize * 0.25, centerY - iconSize * 0.1);
+      ctx.lineTo(centerX - iconSize * 0.05, centerY);
+      ctx.lineTo(centerX + iconSize * 0.15, centerY + iconSize * 0.4);
+      ctx.lineTo(centerX - iconSize * 0.25, centerY + iconSize * 0.1);
+      ctx.lineTo(centerX + iconSize * 0.05, centerY);
+      ctx.closePath();
+      ctx.fill();
+      
+      // Download
+      canvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `icon-${size}.png`;
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+    }
+    
+    // Generate both on load for preview
+    window.onload = () => {
+      generateIcon(192);
+      generateIcon(512);
+    };
+  </script>
+</body>
+</html>
+

@@ -286,7 +286,7 @@ body {
 /* Auth Card Container - Bottom section (scrollable) */
 .auth-card-container {
     flex: 1;
-    background-color: var(--bg-card);
+    background-color: #000;
     padding: 24px;
 
     display: flex;
